@@ -1,0 +1,61 @@
+/* SJSU CMPE 138 Fall 2021 TEAM_2 */
+body {
+  background-color: #ffffff;
+}
+
+.header{
+    padding: 5px 120px;
+    width: 150px;
+    height: 70px;
+    background-color: #000000;
+}
+
+.border{
+    
+    width: 60%;
+    height: 100%;
+    border: 1px solid #000000;
+    border-radius: 0px;
+    background-color: #ffffff;
+    padding-bottom: 2em;
+    padding-top: -1em;
+}
+
+.btn {
+    padding: 10px 40px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.textbox{
+    padding: 10px 40px;
+    background-color: #3b99cf;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+    
+::placeholder {
+    color: #FFFFFF;
+    opacity: 1;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.word{
+    color: #FFFFFF;
+    font-style: oblique;
+    font-weight: bold;
+}
+.msg{
+    color: #ff0000;
+    font-style: oblique;
+    font-weight: bold;
+}
+.bottom{
+    color: #000000;
+    font-style: oblique;
+    font-weight: bold;
+}

@@ -1,0 +1,69 @@
+<!-- SJSU CMPE 138 Fall 2021 TEAM_2 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+    <style>
+ 
+       td {
+               width: 150px;
+               text-align: center;
+               border: 1px solid black;
+               padding: 5px;
+             }
+             th {
+               width: 150px;
+               text-align: center;
+               border: 1px solid black;
+               padding: 5px;
+             }
+       </style>
+
+        <h3> Splitting Shopping List {{sl_id}} </h3>
+<p>Items in this list are</p>
+<table>
+    <thead>
+      <tr>
+          
+          <th>item_id</th>
+          <th>quantity</th>
+  
+      </tr>
+      </thead>    
+      <tbody>
+          {% for sl_detail in sl_details %}
+      <tr>
+          
+          <td>{{sl_detail['item_id']}}</td>
+          <td>{{sl_detail['quantity']}}</td>
+          {% endfor %}
+      </tr>  
+  
+    
+      </tbody>
+  </table>
+
+{% for offering_dict in offering_dict_outer %}
+{% for detail in offering_dict %}
+{% if offering_dict[detail]['order_flag'] %}
+<h3>
+    <a href= "{{'/order_details/%s'%offering_dict[detail]['order']}}" >{{offering_dict[detail]['order']}} </a>
+           created in {{offering_dict[detail]['store']}} 
+            , contains {{offering_dict[detail]['quantity']}}  of  {{offering_dict[detail]['item']}} @ {{offering_dict[detail]['price']}}
+            Total cost is ${{offering_dict[detail]['price']*offering_dict[detail]['quantity']}}
+              <br>
+</h3>
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+{{msg}}
+<h3>Click on Order ID to place the order</h3>
+  <a href="{{url_for('home_api')}}">Back to item list</a><br>
+  <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+  
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!-- SJSU CMPE 138 Fall 2021 TEAM_2 -->
+
+Read more: https://html.com/tags/comment-tag/#ixzz7CVrAktOY
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+  td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+      th {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+</style>
+<h3 class="bottom">
+    Hi {{session.username}}! Item details of {{item_details['item_name'] }} are as follows:
+</h3></br>
+
+<table>
+  <thead>
+    <tr>
+        <th>item ID</th>
+        <th>brand</th>
+        <th>item_name</th>
+        <th>unit</th>
+        <th>category</th>
+    </tr>
+    </thead>    
+    <tbody>
+
+     
+    <tr>
+        <td>{{item_details['item_id'] }}</td> 
+        <td>{{item_details['brand'] }}</td>
+        <td>{{item_details['item_name'] }}</td>
+        <td>{{item_details['unit'] }}</td>
+        <td>{{item_details['category'] }}</td>
+    </tr>   
+    
+    </tbody>
+</table>
+<p>
+   
+</p>
+
+{%if item_price_details%}
+<h3> This item is offered in following stores</h3>
+<table>
+  <thead>
+    <tr>
+        <th>store_id</th>
+        <th>price</th>
+        <th>price_per_unit</th>
+    </tr>
+    </thead>    
+    <tbody>
+        {% for item_price_detail in item_price_details %}
+    <tr>
+        <td>{{item_price_detail['store_id'] }}</td> 
+        <td>{{item_price_detail['price'] }}</td>
+        <td>{{item_price_detail['price_per_unit'] }}</td>
+    </tr>   
+    {% endfor %}
+    </tbody>
+</table>
+<h2>
+    Add this Item: {{item_details['item_id'] }} to your Shopping List:
+</h2>
+
+
+<form id="new_item_in_sl" action="{{ url_for('insert_item_into_SL')}}" method="POST" >
+
+<input type="hidden" name="item_id" name="item_id" value="{{item_details['item_id'] }}">
+Shoping List ID: 
+<select name="list_id_dropdown" id="list_id_dropdown" class="selectpicker form-control">
+    {% for sl_detail in sl_details %}
+    <option value="{{sl_detail['shopping_list_id'] }}">{{sl_detail['shopping_list_id'] }}</option>
+    {% endfor %}
+</select><br>
+Quantity: <input type="text" id="quantity"  name="quantity" id="quantity"><br>
+<input type="submit" class="btn" value="Add to Shopping List"><br>
+
+
+</form>
+    <a href="{{url_for('home_api')}}">Back to item list</a><br>
+    <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+{%else%}
+<h3> This item is not availble in any store</h3>
+
+
+
+
+
+
+<a href="{{url_for('home_api')}}">Back to item list</a><br>
+<a href="{{ url_for('logout') }}" class="btn">Logout</a>
+{%endif%}
+</body>
+</html>

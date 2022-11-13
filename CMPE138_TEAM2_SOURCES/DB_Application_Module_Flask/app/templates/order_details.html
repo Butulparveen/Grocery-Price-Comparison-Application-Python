@@ -1,0 +1,58 @@
+<!-- SJSU CMPE 138 Fall 2021 TEAM_2 -->
+
+!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+    th{
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+
+</style>
+<h3 class="bottom"> Order Details of {{record_details[0]['order_id']}}</h3>
+<br>
+
+<table>
+    <tr>
+        
+        <th>Item ID</th>
+        <th>Item Quantity</th>
+        <th>Order Total Price</th>
+        <th>Store Id</th>
+
+    </tr>
+    <tr>
+        {% for item in record_details %}
+        <td>{{record_details[0]['item_id']}}</td>
+        <td>{{record_details[0]['quantity']}}</td>
+        {% endfor %}
+        {% for item in order_details %}
+        <td>{{order_details[0]['total_cost']}}</td>
+        {% endfor %}
+        {% for store in process_details %}
+        <td>{{process_details[0]['store_id']}}</td>
+       {% endfor %}
+    
+        
+   
+    </tr>
+</table>
+
+<a href="{{url_for('home_api')}}">Back to item list</a><br>
+<a href="{{ url_for('logout') }}" class="btn">Logout</a>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!-- SJSU CMPE 138 Fall 2021 TEAM_2 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+    th{
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+    
+</style>
+<h1 class="bottom">
+    Hi {{session.username}}! Welcome to the Grocery Comparison app	_/\_		
+</h1>
+<h3>Your Customer ID is {{session.id}}</h3>
+<table>
+  <thead>
+    <tr>
+        <th>item ID</th>
+        <th>brand</th>
+        <th>item_name</th>
+        <th>unit</th>
+        <th>category</th>
+    </tr>
+    </thead>    
+    <tbody>
+
+     {% for item in items %}    
+    <tr>
+        <td> <a href="{{ '/items/%s'%item[0]}}"> {{item[0]}} </a> </td>
+        <td>{{item[1] }}</td>
+        <td>{{item[2] }}</td>
+        <td>{{item[3] }}</td>
+        <td>{{item[4] }}</td>
+    </tr>   
+    {% endfor %}
+    </tbody>
+</table>
+<h2> Shopping Lists of {{session.username}} are:</h2>
+   {% for SL in SL_IDs%}
+   <h3>
+    <li> <a href="{{'/shopinglist/%s'%SL['shopping_list_id']}}"> {{SL['shopping_list_id']}} </a>  </li>
+</h3>
+    {% endfor %}
+<h2>
+    Creating a new Shopping List:
+    <input type="submit" value="Create New Shopping List" onclick="window.location.href='/customer/new_sl'">
+</h2>
+<a href="{{ url_for('logout') }}" class="btn">Logout</a>
+
+</body>
+</html>

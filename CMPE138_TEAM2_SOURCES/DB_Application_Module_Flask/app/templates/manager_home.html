@@ -1,0 +1,57 @@
+<!-- SJSU CMPE 138 Fall 2021 TEAM_2 -->
+<html>
+<title>
+    Manager Home
+</title>
+<head>
+{{msg}}
+</head>
+<body>
+    <style>
+ 
+        td {
+               width: 150px;
+               text-align: center;
+               border: 1px solid black;
+               padding: 5px;
+             }
+             th{
+                width: 150px;
+               text-align: center;
+               border: 1px solid black;
+               padding: 5px; 
+             }
+       </style>
+    <h3>Hello {{m_details['m_id']}}, your store_id is {{m_store_id}}</h3>
+
+  
+    <table>
+        <thead>
+          <tr>
+              
+              <th> store_id</th>
+              <th> item_id</th>
+              <th> price</th>
+              <th> quantity_in_stock</th>
+              <th> Update </th>
+            </tr>
+          </thead>    
+          <tbody>
+              {% for inventory_detail in inventory_details %}
+          <tr>
+              <form  action="{{ url_for('update_inventory') }}" method="post">
+            <td>{{inventory_detail['store_id'] }}</td> 
+              <td><label for="item_id">{{inventory_detail['item_id'] }}</label><input type="hidden" id="item_id" name="item_id" value="{{inventory_detail['item_id'] }}"></td>
+              <td><input type="text" name="price" value=" {{inventory_detail['price']}}"></td>
+              <td><input type="text" name="quantity_in_stock" value=" {{inventory_detail['quantity_in_stock']}}"></td>
+   
+              <td><input type="submit"  method="post"></td>
+            </form>
+          </tr>  
+             {% endfor %}
+          </tbody>
+      </table>
+
+      <a href="{{ url_for('m_logout') }}" class="btn">Logout</a>
+</body>
+</html>

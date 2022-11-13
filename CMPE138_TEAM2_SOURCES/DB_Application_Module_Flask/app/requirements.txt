@@ -1,0 +1,17 @@
+backports.entry-points-selectable==1.1.1
+click==8.0.3
+distlib==0.3.3
+filelock==3.4.0
+Flask==2.0.2
+Flask-JWT-Extended==4.3.1
+Flask-MySQLdb==0.2.0
+itsdangerous==2.0.1
+Jinja2==3.0.3
+jsonify==0.5
+MarkupSafe==2.0.1
+mysqlclient==2.0.3
+platformdirs==2.4.0
+PyJWT==2.3.0
+six==1.16.0
+virtualenv==20.10.0
+Werkzeug==2.0.2

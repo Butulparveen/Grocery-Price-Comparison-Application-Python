@@ -1,0 +1,92 @@
+<!-- SJSU CMPE 138 Fall 2021 TEAM_2 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+      th {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+</style>
+<h3 class="bottom">
+    Hi {{session.username}}! Item details of {{list_id }} are as follows:
+</h3></br>
+
+
+
+{%if sl_details%}
+<h3> This items contained in {{list_id}} are</h3>
+<table>
+  <thead>
+    <tr>
+        
+        <th>item_id</th>
+        <th>quantity</th>
+
+    </tr>
+    </thead>    
+    <tbody>
+        {% for sl_detail in sl_details %}
+    <tr>
+        
+        <td>{{sl_detail['item_id'] }}</td>
+        <td>{{sl_detail['quantity'] }}</td>
+        
+    </tr>  
+
+    {% endfor %}
+    </tbody>
+</table>
+<h3> The best rates for items contained in {{list_id}} are</h3>
+<table>
+    <thead>
+        <tr>
+            <th>item id</th> 
+            <th>cheapest store_id</th>
+            <th>cheapest price</th>
+            <th>quantity in store_id</th>
+    
+        </tr>
+        </thead>    
+        <tbody>
+            {% for compare_detail in compare_details %}
+            {% for detail in compare_detail%}
+        <tr>
+           <td>{{detail['item_id']}}</td>
+            <td>{{detail['store_id'] }}</td>
+            <td>{{detail['price'] }}</td>
+            <td>{{detail['quantity_in_stock'] }}</td>
+        </tr>  
+        {% endfor %} 
+        {% endfor %}
+        </tbody>
+</table>
+<form id="comapare_and_split_form" action="{{url_for('split_sl')}}" method="POST">
+    <input type="submit" value="Compare and split the list into new orders and to find other options">
+</form>
+{{offering_dict}}
+
+{%else%}
+<h3> {{msg}}</h3>
+{%endif%}
+
+
+
+<a href="{{url_for('home_api')}}">Back to item list</a><br>
+<a href="{{ url_for('logout') }}" class="btn">Logout</a>
+
+</body>
+</html>
